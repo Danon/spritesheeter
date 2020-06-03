@@ -58,7 +58,7 @@ public class Trimmer {
     }
 
     private static void saveCopy(File imageFile, BufferedImage image) {
-        saveImage(image, getExt(imageFile), copyOfNested(imageFile, "trimmed"));
+        saveImage(image, getExt(imageFile), copyOfNested(imageFile, imageFile.getParent() + ".trimmed"));
     }
 
     private static Padding compositeBounds(Collection<BufferedImage> bufferedImageStream) {

@@ -17,7 +17,7 @@ public class Files {
     }
 
     public static File copyOfNested(File file, String folder) {
-        File nest = new File(file.getParent(), folder);
+        File nest = new File(file.getParentFile().getParentFile(), folder);
         nest.mkdir();
         return new File(nest, getBasename(file.getName()) + "." + getExt(file.getName()));
     }
