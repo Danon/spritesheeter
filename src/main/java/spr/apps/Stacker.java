@@ -16,7 +16,6 @@ import static java.lang.String.format;
 import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.toList;
 import static spr.ex.Files.listFiles;
-import static spr.ex.Images.openImage;
 import static spr.ex.Images.saveImage;
 
 public class Stacker {
@@ -35,9 +34,7 @@ public class Stacker {
     }
 
     private static void storeSpriteSheet(File folder, String format, List<BufferedImage> images, BufferedImage outputImage) {
-        String filename = formatFilename(folder, format, images.size(), new Size(images.get(0)));
-        saveImage(outputImage, format, new File(filename));
-        System.out.println("Stored " + filename);
+        saveImage(outputImage, format, new File(formatFilename(folder, format, images.size(), new Size(images.get(0)))));
     }
 
     private static String formatFilename(File folder, String imageFormat, int frames, Size size) {
