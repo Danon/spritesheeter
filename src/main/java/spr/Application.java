@@ -15,7 +15,7 @@ import static spr.args.RenderFormat.FRAMES;
 import static spr.args.RenderFormat.SINGLE_IMAGE;
 import static spr.args.RenderFormat.STACKED;
 
-public class Main {
+public class Application {
     public static void main(String[] args) {
         Task task = parse(args);
 

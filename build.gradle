@@ -1,6 +1,7 @@
 apply plugin: 'java'
 
 group 'spr'
+version = '0.1.0'
 
 repositories {
     jcenter()
@@ -8,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'info.picocli', name: 'picocli', version: '4.3.2'
+    implementation group: 'info.picocli', name: 'picocli', version: '4.3.2'
 
     compileOnly "org.projectlombok:lombok:1.18.2"
     testCompileOnly "org.projectlombok:lombok:1.18.2"
@@ -19,10 +20,22 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.2"
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.2"
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
 }
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'spr.Application',
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+        )
+    }
+
+    from(configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }) {}
 }
