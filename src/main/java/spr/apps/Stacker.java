@@ -1,5 +1,6 @@
 package spr.apps;
 
+import spr.ex.Images;
 import spr.ex.Padding;
 import spr.ex.Size;
 
@@ -75,11 +76,7 @@ public class Stacker {
                     }
                     throw new RuntimeException(format("Failed to assert that '%s' ends with a sprite number", name));
                 }))
-                .map(file -> {
-                    BufferedImage image = openImage(file);
-                    System.out.println(format("Adding %s (%d/%dpx)", file.getPath(), image.getWidth(), image.getHeight()));
-                    return image;
-                })
+                .map(Images::openImage)
                 .collect(toList());
     }
 }
