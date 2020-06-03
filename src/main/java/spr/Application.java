@@ -11,12 +11,17 @@ import java.io.File;
 
 import static java.lang.String.format;
 import static spr.args.ArgumentParser.parse;
+import static spr.args.ArgumentParser.usage;
 import static spr.args.RenderFormat.FRAMES;
 import static spr.args.RenderFormat.SINGLE_IMAGE;
 import static spr.args.RenderFormat.STACKED;
 
 public class Application {
     public static void main(String[] args) {
+        if (args.length == 0) {
+            usage();
+            return;
+        }
         Task task = parse(args);
 
         if (task.getFormat() == STACKED) {

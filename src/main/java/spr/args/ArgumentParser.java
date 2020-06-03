@@ -12,8 +12,11 @@ public class ArgumentParser {
         CommandLine cl = new CommandLine(command);
         cl.registerConverter(ColsAndRows.class, ColsAndRowsFactory::parseColsAndRows);
         cl.registerConverter(Padding.class, PaddingFactory::parsePadding);
-        cl.usage(System.out);
         cl.parseArgs(args);
         return command;
+    }
+
+    public static void usage() {
+        new CommandLine(new Arguments()).usage(System.out);
     }
 }
