@@ -16,14 +16,10 @@ public class Files {
         return Arrays.stream(array);
     }
 
-    public static File copyOf(File file, String suffix) {
-        return new File(file.getParent(), getBasename(file.getName()) + "." + suffix + "." + getExt(file.getName()));
-    }
-
-    public static File copyOfNested(File file, String folder, String suffix) {
+    public static File copyOfNested(File file, String folder) {
         File nest = new File(file.getParent(), folder);
         nest.mkdir();
-        return new File(nest, getBasename(file.getName()) + "." + suffix + "." + getExt(file.getName()));
+        return new File(nest, getBasename(file.getName()) + "." + getExt(file.getName()));
     }
 
     public static String getExt(File file) {
