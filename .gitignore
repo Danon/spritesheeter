@@ -4,3 +4,9 @@
 
 # Build
 out/
+
+# Gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
