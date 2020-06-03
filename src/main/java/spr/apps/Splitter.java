@@ -50,12 +50,7 @@ public class Splitter {
         String extension = getExtension(packedFile.getName()).orElseThrow(RuntimeException::new);
         String basename = getBasename(packedFile.getName());
 
-        File file = new File(framesFolder, basename + "-" + index + "." + extension);
-        Images.saveImage(
-                frame,
-                extension,
-                file);
-        System.out.println("Saved frame " + file.getPath());
+        Images.saveImage(frame, extension, new File(framesFolder, basename + "-" + index + "." + extension));
     }
 
     private static Size frameSize(File file, ColsAndRows colsAndRows, BufferedImage image) {
