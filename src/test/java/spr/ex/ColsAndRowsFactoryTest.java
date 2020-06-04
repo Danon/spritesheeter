@@ -4,12 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ColsAndRowsFactoryTest
-{
+class ColsAndRowsFactoryTest {
     @Test
-    void shouldThrowException()
-    {
-        assertThrows(RuntimeException.class, () -> ColsAndRowsFactory.parseColsAndRows("0:0"));
+    void shouldThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> ColsAndRowsFactory.parseColsAndRows(":"));
         assertThrows(IllegalArgumentException.class, () -> ColsAndRowsFactory.parseColsAndRows("4::4"));
         assertThrows(IllegalArgumentException.class, () -> ColsAndRowsFactory.parseColsAndRows("asd"));
@@ -26,26 +23,27 @@ class ColsAndRowsFactoryTest
     }
 
     @Test
-    void shouldParseColsAndRowsSmallAmount()
-    {
-        // given
-        ColsAndRows actual = ColsAndRowsFactory.parseColsAndRows("2:3");
-        ColsAndRows expected = new ColsAndRows(2, 3);
-
-        // then
-        assertEquals(expected.cols, actual.cols);
-        assertEquals(expected.rows, actual.rows);
+    void shouldThrowZeroDimensionException() {
+        assertThrows(ZeroDimensionException.class, () -> ColsAndRowsFactory.parseColsAndRows("0:0"));
     }
 
     @Test
-    void shouldParseColsAndRowsBigAmount()
-    {
-        // given
-        ColsAndRows actual = ColsAndRowsFactory.parseColsAndRows("123456789:123456789");
-        ColsAndRows expected = new ColsAndRows(123456789, 123456789);
+    void shouldParseColsAndRows_smallAmount() {
+        // when
+        ColsAndRows actual = ColsAndRowsFactory.parseColsAndRows("1:2");
 
         // then
-        assertEquals(expected.cols, actual.cols);
-        assertEquals(expected.rows, actual.rows);
+        assertEquals(1, actual.cols);
+        assertEquals(2, actual.rows);
+    }
+
+    @Test
+    void shouldParseColsAndRows_bigAmount() {
+        // when
+        ColsAndRows actual = ColsAndRowsFactory.parseColsAndRows("9999999:8888888");
+
+        // then
+        assertEquals(9999999, actual.cols);
+        assertEquals(8888888, actual.rows);
     }
 }
