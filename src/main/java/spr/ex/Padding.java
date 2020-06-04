@@ -25,4 +25,8 @@ public class Padding {
         this.bottom = bottom;
         this.left = left;
     }
+
+    public boolean isZero() {
+        return top == 0 && right == 0 && bottom == 0 && left == 0;
+    }
 }

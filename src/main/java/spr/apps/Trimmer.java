@@ -54,6 +54,10 @@ public class Trimmer {
         Padding bounds = compositeBounds(files.values());
         System.out.println("Composite bounds: " + formatBounds(bounds));
 
+        if (bounds.isZero()) {
+            System.out.println("No trimming");
+        }
+
         files.forEach((imageFile, value) -> saveCopy(imageFile, trimImage(value, bounds)));
     }
 
